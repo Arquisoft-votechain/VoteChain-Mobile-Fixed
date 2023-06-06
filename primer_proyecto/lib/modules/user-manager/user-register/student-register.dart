@@ -1,7 +1,4 @@
-import '../models/terms-conditions.dart' as globals;
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import '../user-login/student-login.dart';
 import '../terms-conditions/terms-conditions.dart';
@@ -229,7 +226,7 @@ class _StudentRegisterState extends State<StudentRegister> {
                 DefaultTextStyle(
                   style: TextStyle(
                       fontSize: 11,
-                      color: Theme.of(context).textTheme.subtitle1!.color),
+                      color: Theme.of(context).textTheme.titleMedium!.color),
                   child: Wrap(
                     //ItemsScreen
                     crossAxisAlignment: WrapCrossAlignment.center,

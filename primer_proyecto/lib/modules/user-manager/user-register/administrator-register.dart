@@ -1,10 +1,6 @@
-import '../models/terms-conditions.dart' as globals;
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import '../user-login/administrator-login.dart';
-import '../user-login/student-login.dart';
 import '../terms-conditions/terms-conditions.dart';
 import '../terms-conditions/terms-conditions-controller.dart';
 
@@ -204,7 +200,7 @@ class _AdministratorRegisterState extends State<AdministratorRegister> {
                 DefaultTextStyle(
                   style: TextStyle(
                       fontSize: 11,
-                      color: Theme.of(context).textTheme.subtitle1!.color),
+                      color: Theme.of(context).textTheme.titleMedium!.color),
                   child: Wrap(
                     //ItemsScreen
                     crossAxisAlignment: WrapCrossAlignment.center,

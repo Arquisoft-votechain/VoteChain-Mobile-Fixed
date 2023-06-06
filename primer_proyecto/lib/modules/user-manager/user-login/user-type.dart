@@ -1,10 +1,7 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import '../user-login/administrator-login.dart';
 import '../user-login/student-login.dart';
-import '../user-views/student-view.dart';
-import '../user-views/administrator-view.dart';
 
 class TypeUserLogin extends StatefulWidget {
   const TypeUserLogin({Key? key}) : super(key: key);
