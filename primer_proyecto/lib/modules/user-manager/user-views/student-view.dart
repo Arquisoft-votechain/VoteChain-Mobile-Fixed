@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import '../user-views/user-profile.dart';
 import '../user-login/student-login.dart';
+import '../user-views/candidate.dart';
 
 class StudentView extends StatelessWidget {
   StudentView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         drawer: Drawer(
           child:  Container(
@@ -16,13 +18,6 @@ class StudentView extends StatelessWidget {
 
             children: [
 
-          Container(
-              height: 40,
-              padding: const EdgeInsets.fromLTRB(2, 2, 2, 0),
-              child: Card(
-                  child: Image.asset('assets/img/logo.png')
-              )
-          ),
               Container(
 
                 width: 100,
@@ -67,7 +62,7 @@ class StudentView extends StatelessWidget {
                       backgroundColor: Colors.blue[800]
                   ),
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => StudentView()));
+                    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => CandidateView()));
                   },
                 ),
               ),
@@ -120,6 +115,7 @@ class StudentView extends StatelessWidget {
         ),
         appBar: AppBar(
           title: Container(
+              height: 55,
               child: Card(
                   child: Image.asset('assets/img/logo.png')
               )

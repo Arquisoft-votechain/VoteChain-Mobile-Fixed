@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'candidate.dart';
 import '../user-views/user-profile.dart';
 import '../user-login/student-login.dart';
-
 
 
 class AdministratorView extends StatelessWidget {
@@ -9,6 +9,7 @@ class AdministratorView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         drawer: Drawer(
           child:  Container(
@@ -16,15 +17,8 @@ class AdministratorView extends StatelessWidget {
               color: Colors.blue[100],
               child: Column(
                 children: [
-                  Container(
-                      height: 40,
-                      padding: const EdgeInsets.fromLTRB(2, 2, 2, 0),
-                      child: Card(
-                          child: Image.asset('assets/img/logo.png')
-                      )
-                  ),
-                  Container(
 
+                  Container(
                     width: 100,
                     height: 100,
                     margin: const EdgeInsets.only(top:50, bottom: 20),
@@ -67,7 +61,7 @@ class AdministratorView extends StatelessWidget {
                           backgroundColor: Colors.blue[800]
                       ),
                       onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => AdministratorView()));
+                        Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => CandidateView()));
                       },
                     ),
                   ),

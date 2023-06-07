@@ -24,6 +24,13 @@ class _TypeUserLoginState extends State<TypeUserLogin> {
               height: 230,
               padding: const EdgeInsets.fromLTRB(10, 80, 10,30),
               child: Card(
+                  shape: RoundedRectangleBorder(
+                    side: BorderSide(
+                      color: Colors.black,
+                      width: 2.0,
+                    ),
+                    borderRadius: BorderRadius.circular(14.0),
+                  ),
                   child: Image.asset('assets/img/logo.png'))
           ),
         Divider(color: Colors.black),
