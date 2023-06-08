@@ -17,16 +17,14 @@ class VoteIfNotView extends StatelessWidget {
                 children: [
                   // Primera fila - imagen redondeada
                   Container(
-                    width: 80.0,
-                    height: 80.0,
+                    width: 100,
+                    height: 100,
                     decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.grey,
-                    ),
-                    alignment: Alignment.center,
-                    child: Text(
-                      'Imagen',
-                      style: TextStyle(fontSize: 16.0),
+                      borderRadius: BorderRadius.circular(60 / 2),
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: AssetImage('assets/img/warning.png'),
+                      ),
                     ),
                   ),
 
@@ -38,7 +36,7 @@ class VoteIfNotView extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 40.0,
                         fontWeight: FontWeight.bold,
-                        color: Colors.yellow,
+                        color: Color(0xFFfec047),
                       ),
                       textAlign: TextAlign.center,
                     ),
