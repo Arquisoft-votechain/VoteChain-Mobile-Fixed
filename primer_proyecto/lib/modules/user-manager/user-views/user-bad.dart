@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 import '../user-views/vote.dart';
 
 
-class VoteHappy extends StatelessWidget {
+class VoteBad extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: HappyCard(),
+        body: BadCard(),
       ),
     );
   }
 }
 
-class HappyCard extends StatelessWidget {
+class BadCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -26,17 +26,17 @@ class HappyCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "Voto realizado",
+                "Voto no realizado",
                 style: TextStyle(
                   fontSize: 40.0,
                   fontWeight: FontWeight.bold,
-                  color: Colors.green,
+                  color: Colors.red,
                 ),
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: 16.0),
               Text(
-                "Estimado(a) Elector(a): Queremos informarle que su  participación ha sido registrada satisfactoriamente.",
+                "Estimado(a) Elector(a): Queremos informarle que ha  ocurrido un error en el proceso y su voto no fue registrado",
                 style: TextStyle(
                   fontSize: 15.0,
                   color: Colors.black,
@@ -49,9 +49,9 @@ class HappyCard extends StatelessWidget {
                   Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => VoteView()));
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.green,
+                  backgroundColor: Colors.red,
                 ),
-                child: Text("Continuar"),
+                child: Text("Volver a intentar"),
               ),
             ],
           ),

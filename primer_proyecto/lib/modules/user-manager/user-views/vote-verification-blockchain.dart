@@ -75,7 +75,7 @@ class VerificationCard extends StatelessWidget {
                   Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => VoteHappy()));
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.blue,
+                  backgroundColor: Colors.blue,
                 ),
                 child: Text("Enviar voto"),
               ),

@@ -5,7 +5,6 @@ import '../../../themes/color.dart';
 import '../user-views/vote-if-not.dart';
 
 import 'package:http/http.dart' as http;
-import 'dart:async';
 
 
 /*class VoteView extends StatelessWidget {

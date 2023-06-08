@@ -66,7 +66,7 @@ class VoteIfNotView extends StatelessWidget {
                           Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => VoteVerificationBlockchain()));
                         },
                         style: ElevatedButton.styleFrom(
-                          primary: Colors.blue,
+                          backgroundColor: Colors.blue,
                           padding: EdgeInsets.symmetric(horizontal: 30.0),
                         ),
                         child: Text('SI'),
@@ -77,7 +77,7 @@ class VoteIfNotView extends StatelessWidget {
                             Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => VoteView()));
                         },
                         style: ElevatedButton.styleFrom(
-                          primary: Colors.red,
+                          backgroundColor: Colors.red,
                           padding: EdgeInsets.symmetric(horizontal: 30.0),
                         ),
                         child: Text('NO'),
