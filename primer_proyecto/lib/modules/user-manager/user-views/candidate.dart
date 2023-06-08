@@ -8,7 +8,9 @@ class CandidateView extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(        drawer: Drawer(
+      home: Scaffold(        
+        
+        drawer: Drawer(
           child:  Container(
               padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
               color: Colors.blue[100],
@@ -111,6 +113,9 @@ class CandidateView extends StatelessWidget {
           )
           ),
         ),
+
+
+        
         appBar: AppBar(
           title: Text('PARTIDOS POLITICOS'),
         ),

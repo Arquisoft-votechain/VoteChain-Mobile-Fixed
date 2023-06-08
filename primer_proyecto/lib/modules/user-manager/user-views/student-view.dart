@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../user-views/user-profile.dart';
 import '../user-login/student-login.dart';
 import '../user-views/candidate.dart';
+import '../user-views/vote.dart';
+
 
 class StudentView extends StatelessWidget {
   StudentView({Key? key}) : super(key: key);
@@ -91,7 +93,7 @@ class StudentView extends StatelessWidget {
                       backgroundColor: Colors.blue[800]
                   ),
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => StudentView()));
+                    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => VoteView()));
                   },
                 ),
               ),
