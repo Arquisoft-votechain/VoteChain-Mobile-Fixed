@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../user-views/vote.dart';
+import '../user-views/vote-verification-blockchain.dart';
 
 class VoteIfNotView extends StatelessWidget {
  @override
@@ -7,9 +8,6 @@ class VoteIfNotView extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: AppBar(
-          title: Text('Verificar Voto'),
-        ),
         body: Center(
           child: Card(
             child: Container(
@@ -35,24 +33,26 @@ class VoteIfNotView extends StatelessWidget {
                   SizedBox(height: 10.0),
 
                   // Segunda fila - texto "Advertencia"
-                  Text(
-                    'Advertencia',
-                    style: TextStyle(
-                      fontSize: 20.0,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.yellow,
+                    Text(
+                      "ADVERTENCIA",
+                      style: TextStyle(
+                        fontSize: 40.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.yellow,
+                      ),
+                      textAlign: TextAlign.center,
                     ),
-                  ),
 
                   SizedBox(height: 10.0),
 
                   // Tercera fila - texto "Seguro que quiere realizar su voto?"
                   Text(
                     '¿Seguro que quiere realizar su voto?',
-                    style: TextStyle(
-                      fontSize: 15.0,
-                      fontWeight: FontWeight.bold,
-                    ),
+                      style: TextStyle(
+                        fontSize: 15.0,
+                        color: Colors.black,
+                      ),
+                      textAlign: TextAlign.center,
                   ),
 
                   SizedBox(height: 10.0),
@@ -62,7 +62,9 @@ class VoteIfNotView extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => VoteVerificationBlockchain()));
+                        },
                         style: ElevatedButton.styleFrom(
                           primary: Colors.blue,
                           padding: EdgeInsets.symmetric(horizontal: 30.0),
