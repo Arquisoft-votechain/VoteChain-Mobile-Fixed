@@ -185,7 +185,7 @@ class CandidateView extends StatelessWidget {
                             widthFactor: 0.5,
                             child: ElevatedButton(
                               onPressed: () {
-                                //Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => CandidateMembersView()));
+                                Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => CandidateMembersView()));
                               },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: Color(0xFF3F468F),
