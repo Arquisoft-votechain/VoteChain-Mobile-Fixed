@@ -77,7 +77,7 @@ class VoteView extends StatelessWidget {
                             widthFactor: 0.5,
                             child: ElevatedButton(
                               onPressed: () {
-                                //Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => VoteIfNotView()));
+                                Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => VoteIfNotView()));
                               },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: Color(0xFF3F468F),
