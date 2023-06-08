@@ -25,6 +25,21 @@ class HappyCard extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+
+                  Container(
+                    width: 100,
+                    height: 100,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(60 / 2),
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: AssetImage('assets/img/good.png'),
+                      ),
+                    ),
+                  ),
+
+                  SizedBox(height: 10.0),
+
               Text(
                 "Voto realizado",
                 style: TextStyle(
