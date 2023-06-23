@@ -43,7 +43,7 @@ class StudentView extends StatelessWidget {
                           backgroundColor: Colors.blue[800]
                       ),
                       onPressed: () {
-                        Navigator.of(context).pushReplacementNamed('/ifnot');
+                        Navigator.of(context).pushReplacementNamed('/profile');
                       },
                     ),
                   ),
