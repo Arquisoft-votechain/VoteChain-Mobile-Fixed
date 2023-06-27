@@ -28,6 +28,7 @@ class AuthService{
     );
     print("funcion login user");
     var userId = json.decode(resp.body);
+    userId=userId-1;
 
     print(userId);
 
@@ -62,7 +63,7 @@ class AuthService{
   }
 
 
-  static void GetStudent() async {
+  Future<void> GetStudent() async {
     print("enotro aget student");
     final prefs = await SharedPreferences.getInstance();
     final userId = prefs.getInt('studentId');

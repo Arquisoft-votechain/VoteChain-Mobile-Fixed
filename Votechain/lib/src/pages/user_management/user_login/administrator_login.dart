@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:votechain/src/pages/user_management/user_views/user_profile.dart';
 import 'package:votechain/src/share_preferences/utils/global-colors.dart';
-import 'package:votechain/src/pages/user_management/user_register/student_register.dart';
-import 'package:votechain/src/pages/user_management/user_views/student_view.dart';
-import 'package:votechain/src/services/auth_service.dart';
-import 'package:votechain/src/services/electoral_process.dart';
-import 'package:votechain/src/share_preferences/user_preferences.dart';
-import 'package:votechain/src/route_generator.dart';
+import 'package:votechain/src/pages/user_management/user_register/administrator_register.dart';
+import 'package:votechain/src/pages/user_management/user_views/administrator_view.dart';
 
-class StudentLoginView extends StatelessWidget {
-  const StudentLoginView({Key? key}) : super(key: key);
+class AdministratorLoginView extends StatelessWidget {
+  const AdministratorLoginView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -77,31 +72,6 @@ class LoginForm extends StatefulWidget {
 class _LoginFormState extends State<LoginForm> {
   bool _obscureText = true;
   final _passwordController = TextEditingController();
-  final _emailController = TextEditingController();
-
-  void loginValidation() async{
-    print("ejecutanto login validation");
-
-    bool validate = await AuthService().loggingUser(_emailController.text,_passwordController.text);
-    print(validate);
-    if(validate==true){
-      await AuthService().GetStudent();
-      print("Fin de ejecucion de validacion");
-      print("ejecutanto GetStudent");
-      print("fin de GetStudent");
-      print("INICIO de  GetElectoralProcessId");
-      ElectoralProcessService.GetElectoralProcessId();
-      print('el usuario exisssssssssssssssssste??????????');
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => StudentFirstView()),
-      );
-    }
-
-  }
-
-
-
 
   @override
   void dispose() {
@@ -118,7 +88,6 @@ class _LoginFormState extends State<LoginForm> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TextFormField(
-              controller: _emailController,
               decoration: const InputDecoration(
                 prefixIcon: Icon(Icons.person_outline_outlined),
                 labelText: "E-Mail",
@@ -164,11 +133,15 @@ class _LoginFormState extends State<LoginForm> {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                      loginValidation();
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => AdministratorFirstView()),
+                  );
                 },
                 style: ButtonStyle(
                   backgroundColor:
-                  MaterialStateProperty.all<Color>(GlobalColors.blueColor),
+                      MaterialStateProperty.all<Color>(GlobalColors.blueColor),
                 ),
                 child: Text("Login".toUpperCase()),
               ),
@@ -194,7 +167,8 @@ class LoginFooterWidget extends StatelessWidget {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => StudentRegisterView()),
+              MaterialPageRoute(
+                  builder: (context) => AdministratorRegisterView()),
             );
           },
           style: TextButton.styleFrom(
@@ -204,10 +178,10 @@ class LoginFooterWidget extends StatelessWidget {
             TextSpan(
               text: "Don't have an Account? ",
               style: Theme.of(context).textTheme.bodyLarge?.merge(
-                TextStyle(
-                  fontSize: 18,
-                ),
-              ),
+                    TextStyle(
+                      fontSize: 18,
+                    ),
+                  ),
               children: const [
                 TextSpan(text: "Signup", style: TextStyle(color: Colors.blue)),
               ],

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'vote_happy.dart';
-
+import 'vote_verification-yes.dart';
 
 class VoteVerificationBlockchain extends StatelessWidget {
   @override
@@ -16,6 +16,7 @@ class VoteVerificationBlockchain extends StatelessWidget {
 }
 
 class VerificationCard extends StatelessWidget {
+  TextEditingController codeValidation = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -46,8 +47,12 @@ class VerificationCard extends StatelessWidget {
               ),
               SizedBox(height: 16.0),
               TextFormField(
+                controller: codeValidation,
                 textAlign: TextAlign.center,
                 keyboardType: TextInputType.number,
+                inputFormatters: [
+                  LengthLimitingTextInputFormatter(6),
+                ],
                 decoration: InputDecoration(
                   labelText: "Ingrese el código",
                   border: OutlineInputBorder(),
@@ -72,7 +77,11 @@ class VerificationCard extends StatelessWidget {
               SizedBox(height: 16.0),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => VoteHappy()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) =>
+                              VoteVerificationYesView()));
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue,

@@ -1,4 +1,4 @@
-import 'package:votechain/src/app.dart';
+/*import 'package:votechain/src/app.dart';
 import 'package:votechain/src/share_preferences/user_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
@@ -35,4 +35,4 @@ class MyApp extends StatelessWidget {
   }
 
 
-}
+}*/

@@ -1,7 +1,7 @@
 import 'dart:convert';
-import 'package:votechain/src/util/color.dart';
+import 'package:votechain/src/share_preferences/utils/global-colors.dart';
 import 'package:flutter/material.dart';
-import 'package:votechain/src/util/color.dart';
+import 'package:votechain/src/share_preferences/utils/global-colors.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';

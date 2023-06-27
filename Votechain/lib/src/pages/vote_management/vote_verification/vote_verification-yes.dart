@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
-import 'vote.dart';
-
-
-class VoteBad extends StatelessWidget {
+import '../vote_electoral_process.dart';
+import 'package:votechain/src/pages/vote_management/vote_political_parties.dart';
+class VoteVerificationYesView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: BadCard(),
+        body: HappyCard(),
       ),
     );
   }
 }
 
-class BadCard extends StatelessWidget {
+class HappyCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -25,33 +24,30 @@ class BadCard extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-
-                  Container(
-                    width: 100,
-                    height: 100,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(60 / 2),
-                      image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: AssetImage('assets/img/bad.png'),
-                      ),
-                    ),
+              Container(
+                width: 100,
+                height: 100,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(60 / 2),
+                  image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: AssetImage('assets/img/good.png'),
                   ),
-
-                  SizedBox(height: 10.0),
-
+                ),
+              ),
+              SizedBox(height: 10.0),
               Text(
-                "Voto no realizado",
+                "Voto realizado",
                 style: TextStyle(
                   fontSize: 40.0,
                   fontWeight: FontWeight.bold,
-                  color: Colors.red,
+                  color: Colors.green,
                 ),
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: 16.0),
               Text(
-                "Estimado(a) Elector(a): Queremos informarle que ha  ocurrido un error en el proceso y su voto no fue registrado",
+                "Estimado(a) Elector(a): Queremos informarle que su  participación ha sido registrada satisfactoriamente.",
                 style: TextStyle(
                   fontSize: 15.0,
                   color: Colors.black,
@@ -61,12 +57,16 @@ class BadCard extends StatelessWidget {
               SizedBox(height: 16.0),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => VoteView()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) =>
+                              VotePoliticalPartiesView()));
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.red,
+                  backgroundColor: Colors.green,
                 ),
-                child: Text("Volver a intentar"),
+                child: Text("Volver al Inicio"),
               ),
             ],
           ),

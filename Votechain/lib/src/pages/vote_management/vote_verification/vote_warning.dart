@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'vote.dart';
+import 'package:votechain/src/services/vote_service.dart';
+import '../vote_electoral_process.dart';
 import 'vote_verification_blockchain.dart';
-
-class VoteIfNotView extends StatelessWidget {
- @override
+import 'dart:math';
+import 'package:votechain/src/pages/vote_management/vote_political_parties.dart';
+class VoteWarningView extends StatelessWidget {
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -31,26 +33,24 @@ class VoteIfNotView extends StatelessWidget {
                   SizedBox(height: 10.0),
 
                   // Segunda fila - texto "Advertencia"
-                    Text(
-                      "ADVERTENCIA",
-                      style: TextStyle(
-                        fontSize: 40.0,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFFfec047),
-                      ),
-                      textAlign: TextAlign.center,
+                  Text(
+                    "ADVERTENCIA",
+                    style: TextStyle(
+                      fontSize: 40.0,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFFfec047),
                     ),
-
+                    textAlign: TextAlign.center,
+                  ),
                   SizedBox(height: 10.0),
-
                   // Tercera fila - texto "Seguro que quiere realizar su voto?"
                   Text(
                     '¿Seguro que quiere realizar su voto?',
-                      style: TextStyle(
-                        fontSize: 15.0,
-                        color: Colors.black,
-                      ),
-                      textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 15.0,
+                      color: Colors.black,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
 
                   SizedBox(height: 10.0),
@@ -61,7 +61,13 @@ class VoteIfNotView extends StatelessWidget {
                     children: [
                       ElevatedButton(
                         onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => VoteVerificationBlockchain()));
+                          int n = Random().nextInt(500) + 100000;
+                          //ListVoteService().codeVerification(n);
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) =>
+                                      VoteVerificationBlockchain()));
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.blue,
@@ -72,7 +78,11 @@ class VoteIfNotView extends StatelessWidget {
                       SizedBox(width: 20.0),
                       ElevatedButton(
                         onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => VoteView()));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) =>
+                                      VotePoliticalPartiesView()));
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.red,
