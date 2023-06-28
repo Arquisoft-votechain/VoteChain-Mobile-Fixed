@@ -21,7 +21,7 @@ print("ejecutando api voto");
     return response;
   }
 
- /* Future<http.Response> codeVerification(int code) async{
+ Future<http.Response> codeVerification(int code) async{
 
     final prefs = await SharedPreferences.getInstance();
     final emails= prefs.getString('email')!;
@@ -41,7 +41,7 @@ print("ejecutando api voto");
     print("este es el estatuscode");
     print(response.statusCode);
     return response;
-  }*/
+  }
 
 
 

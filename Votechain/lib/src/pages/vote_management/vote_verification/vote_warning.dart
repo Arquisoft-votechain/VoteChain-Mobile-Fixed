@@ -71,8 +71,7 @@ class VoteWarningView extends StatelessWidget {
                             await prefs.setInt('codeVerification', n);
                           }
                           func();
-
-                          //ListVoteService().codeVerification(n);
+                          ListVoteService().codeVerification(n);
                           Navigator.push(
                               context,
                               MaterialPageRoute(
