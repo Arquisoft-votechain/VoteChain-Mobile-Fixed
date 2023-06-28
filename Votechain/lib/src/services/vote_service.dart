@@ -21,11 +21,11 @@ print("ejecutando api voto");
     return response;
   }
 
-  Future<http.Response> codeVerification(int code) async{
+ /* Future<http.Response> codeVerification(int code) async{
 
     final prefs = await SharedPreferences.getInstance();
     final emails= prefs.getString('email')!;
-
+    await prefs.setInt('codeVerification', code);
     final response = await http.post(Uri.parse("https://votechain.online/emails/send"),
         headers: <String, String>{
           'Content-Type': 'application/json',
@@ -41,7 +41,7 @@ print("ejecutando api voto");
     print("este es el estatuscode");
     print(response.statusCode);
     return response;
-  }
+  }*/
 
 
 

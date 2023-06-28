@@ -28,35 +28,14 @@ class AuthService{
     );
     print("funcion login user");
     var userId = json.decode(resp.body);
-    userId=userId-1;
-
+    print("id del usuario");
     print(userId);
 
       if(userId is int){
         final prefs = await SharedPreferences.getInstance();
-        await prefs.setInt('studentId', userId);
         await prefs.setString('email', email);
-
+        await prefs.setInt('userId', userId);
         print("el usuario exite");
-      //  _prefs.Id=userId;
-
-        /*final url2 = await http.get(
-            Uri.parse('https://www.votechain.online/student'),);
-        var body = json.decode(url2.body) as List;
-        for(var a in body){
-          var id = a["id"];
-          if(id==userId){print("te encontre");
-
-          break;
-          }
-          else{
-            print("No te encontre");
-          }
-        }
-
-        Map<String,dynamic> decodeResp = json.decode(resp.body);
-        /*final user = await _userStudent.getUserStudent(_prefs.id);*/
-*/
         return true;
       }
       else{     print("el usuario no exite"); return false;}
@@ -66,17 +45,16 @@ class AuthService{
   Future<void> GetStudent() async {
     print("enotro aget student");
     final prefs = await SharedPreferences.getInstance();
-    final userId = prefs.getInt('studentId');
+    final userId = prefs.getInt('userId');
     print("sigue corriendo1");
     final url2 = await http.get(
-      Uri.parse('https://www.votechain.online/student/$userId'),);
+      Uri.parse('https://www.votechain.online/student/user/$userId'),);
     var body = json.decode(url2.body);
     print("este es el user Id-----------------------");
     print(userId);
 
     print("sigue corriendo");
     await prefs.setString('user', jsonEncode(body));
-
     final userString = prefs.getString('user');
     var user;
     var userMap = jsonDecode(userString!) ;
@@ -85,7 +63,8 @@ class AuthService{
     var mientras=user['resource']['name'];
     print (mientras);
     print(user['name']);
-
+    var finalStudentId =user['resource']['id'];
+    await prefs.setInt('studentId', finalStudentId);
     print("funcion GetStudent");
   }
 
@@ -94,6 +73,9 @@ class AuthService{
     await prefs.remove('studentId');
     await prefs.remove('email');
     await prefs.remove('user');
+    await prefs.remove('userId');
     await prefs.remove('electoralProcessId');
+    await prefs.remove('masterPoliticalPartyVoteId');
+    await prefs.remove('codeVerification');
   }
 }

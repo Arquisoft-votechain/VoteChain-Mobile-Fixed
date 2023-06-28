@@ -50,7 +50,7 @@ class TypeUserLogin extends StatelessWidget {
                       widthFactor: 0.9,
                       child: ElevatedButton(
                         onPressed: () {
-                       //   AuthService.logout();
+                          AuthService.logout();
                           /*Navigator.push(
                             context,
                             MaterialPageRoute(

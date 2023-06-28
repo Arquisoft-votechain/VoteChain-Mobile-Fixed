@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:votechain/src/pages/vote_management/vote_verification/vote_verification-not.dart';
 import 'vote_verification-yes.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:votechain/src/services/vote_service.dart';
 class VoteVerificationBlockchain extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -64,7 +66,7 @@ class VerificationCard extends StatelessWidget {
               GestureDetector(
                 onTap: () {
                   // Redirigir a la URL cuando se hace clic en el texto
-                  launch("https://youtu.be/dQw4w9WgXcQ");
+                 // launch("https://youtu.be/dQw4w9WgXcQ");
                 },
                 child: Text(
                   "REENVIAR CODIGO",
@@ -77,11 +79,25 @@ class VerificationCard extends StatelessWidget {
               SizedBox(height: 16.0),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (BuildContext context) =>
-                              VoteVerificationYesView()));
+
+                  void func() async{
+                    final prefs = await SharedPreferences.getInstance();
+                    int codeVerification = prefs.getInt('codeVerification')!;
+                    print("comparando codigo de verifacion $codeVerification, con");
+                    var probar = int.parse(codeValidation.text);
+                    print(probar);
+                    if(probar==codeVerification){
+                      final student = prefs.getInt('studentId')!;
+                      final politicalParty = prefs.getInt('masterPoliticalPartyVoteId')!;
+                      ListVoteService().postVote(student, politicalParty);
+                      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => VoteVerificationYesView()));
+                    }
+                    else{
+                      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => VoteVerificationNotView()));
+                    }
+                  }
+
+                  func();
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue,

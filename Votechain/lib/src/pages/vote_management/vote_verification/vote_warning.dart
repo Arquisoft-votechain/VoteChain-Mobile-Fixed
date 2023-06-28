@@ -4,6 +4,8 @@ import '../vote_electoral_process.dart';
 import 'vote_verification_blockchain.dart';
 import 'dart:math';
 import 'package:votechain/src/pages/vote_management/vote_political_parties.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 class VoteWarningView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -62,6 +64,14 @@ class VoteWarningView extends StatelessWidget {
                       ElevatedButton(
                         onPressed: () {
                           int n = Random().nextInt(500) + 100000;
+                          print("atento este es el codigooooooooooo $n");
+                          void func() async{
+
+                            final prefs = await SharedPreferences.getInstance();
+                            await prefs.setInt('codeVerification', n);
+                          }
+                          func();
+
                           //ListVoteService().codeVerification(n);
                           Navigator.push(
                               context,

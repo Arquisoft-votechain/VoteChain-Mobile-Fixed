@@ -80,7 +80,8 @@ class _VoteViewState extends State<VotePoliticalPartiesView> {
       final prefs = await SharedPreferences.getInstance();
       final studentVoteId =prefs.getInt('studentId')!;
       print("este es studentVoteID $studentVoteId, este es masterid $masterPoliticalPartyId");
-      listPublicationsService.postVote(studentVoteId,masterPoliticalPartyId);
+      await prefs.setInt('masterPoliticalPartyVoteId', masterPoliticalPartyId);
+      ///listPublicationsService.postVote(studentVoteId,masterPoliticalPartyId);
     }
     return Card(
       elevation: 1.5,
