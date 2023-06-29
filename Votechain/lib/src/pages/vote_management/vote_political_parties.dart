@@ -30,6 +30,8 @@ class _VoteViewState extends State<VotePoliticalPartiesView> {
     print("iniciando importnate");
     final prefs = await SharedPreferences.getInstance();
     final electoralProcessId = prefs.getInt('electoralProcessId')!;
+    print("que esta pasando??????????????????");
+    print(electoralProcessId);
     var url = Uri.parse('https://www.votechain.online/electoral-processes/$electoralProcessId/political-party-participants');
     var response = await http.get(url);
     print("estos son los partidos"+response.body);

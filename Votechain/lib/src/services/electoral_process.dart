@@ -30,9 +30,6 @@ class ElectoralProcessService{
             print(idss1);
             print(idss1.runtimeType);
             // int idss2= int.parse(idss1);
-
-            idss1=5;
-
             // print(idss2);
             // await prefs.setString('electoralProcessId', jsonEncode(body));
             await prefs.setInt('electoralProcessId',idss1);
