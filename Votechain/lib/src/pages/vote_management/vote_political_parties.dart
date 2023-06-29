@@ -73,7 +73,7 @@ class _VoteViewState extends State<VotePoliticalPartiesView> {
   Widget getCard(item) {
     var fullName = item['master_political_party']['name'];
     var description = item['master_political_party']['description'];
-    var masterPoliticalPartyId = item['master_political_party']['id'];
+    var masterPoliticalPartyId = item['id'];
     //image: NetworkImage(profileUrl)
 
     void voteListMasterPoliticalParty() async{

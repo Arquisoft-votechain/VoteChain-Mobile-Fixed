@@ -4,7 +4,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 class ListVoteService{
 
   Future<http.Response> postVote(int studentId, int politicalPartyId) async{
-print("ejecutando api voto");
     final response = await http.post(Uri.parse("https://www.votechain.online/student/$studentId/politicalpartyparticipant/$politicalPartyId"),
         headers: <String, String>{
           'Content-Type': 'application/json',
@@ -12,11 +11,11 @@ print("ejecutando api voto");
         body: jsonEncode({
           "studentId": studentId,
           "politicalPartyId": politicalPartyId,
-
+//enzo77473@gmail.com
         }),
         encoding: utf8
     );
-    print("este es el estatuscode");
+    print("este es el estatuscode del api");
     print(response.statusCode);
     return response;
   }
@@ -26,20 +25,23 @@ print("ejecutando api voto");
     final prefs = await SharedPreferences.getInstance();
     final emails= prefs.getString('email')!;
     await prefs.setInt('codeVerification', code);
+    print("este odigo estoy enviando al correo");
+    print(code);
     final response = await http.post(Uri.parse("https://votechain.online/emails/send"),
         headers: <String, String>{
           'Content-Type': 'application/json',
         },
+
         body: jsonEncode({
           "emailRecipient": emails,
-          "subject": "string",
-          "code": code,
-          "nameRecipient": "string"
+          "subject": "Hola",
+          "code":code,
+          "nameRecipient": "Enzo"
         }),
         encoding: utf8
     );
     print("este es el estatuscode");
-    print(response.statusCode);
+    print(response);
     return response;
   }
 
