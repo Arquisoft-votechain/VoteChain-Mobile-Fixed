@@ -1,10 +1,17 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:votechain/src/share_preferences/utils/global-colors.dart';
 import 'package:votechain/src/nav-bar.dart';
-import 'package:votechain/src/pages/political_party_management/political_parties.dart';
 import 'package:http/http.dart' as http;
 import 'result_political_parties.dart';
+
+class _PieData {
+  final String xData;
+  final num yData;
+  final String? text;
+  _PieData(this.xData, this.yData, {this.text});
+}
 
 class ResultElectoralProcessView extends StatefulWidget {
   @override
@@ -14,11 +21,14 @@ class ResultElectoralProcessView extends StatefulWidget {
 class _VoteViewState extends State<ResultElectoralProcessView> {
   List users = [];
   bool isLoading = false;
+  List<_PieData> listPieData = [];
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    this.fetchUser();
+    //this.fetchUser();
+    this.fetchResults();
   }
 
   fetchUser() async {
@@ -40,6 +50,34 @@ class _VoteViewState extends State<ResultElectoralProcessView> {
     }
   }
 
+  fetchResults() async {
+    //TODO obtener electoral Process id
+    var url = Uri.parse(
+        'https://www.votechain.online/electoral-processes/3/political-party-participants/votes');
+    var response = await http.get(url);
+    print("MIRAME COÑOOOO");
+    print("MIRAME COÑOOOO");
+    print(response.body.toString());
+    print("MIRAME COÑOOOO");
+    print("MIRAME COÑOOOO");
+
+    if (response.statusCode == 200) {
+      var items = json.decode(response.body) as List<dynamic>;
+      var itemsMap = items.asMap();
+
+      itemsMap.forEach((key, value) {
+        listPieData.add(_PieData('${value['votes']}', value['votes'], text: '${value['master_political_party']['name']}'));
+      });
+
+      print("MIRAME body Response");
+      print("MIRAME body Response");
+      print(listPieData.toString());
+      print("MIRAME body Response");
+      print("MIRAME body Response");
+      setState(() { });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,7 +85,32 @@ class _VoteViewState extends State<ResultElectoralProcessView> {
       appBar: AppBar(
         title: Text("RESULTADOS"),
       ),
-      body: getBody(),
+      body: SafeArea(child: realBody()),
+    );
+  }
+
+  Widget realBody() {
+    return Center(
+      child: Column(
+        children: [
+          Center(
+              child:SfCircularChart(
+                  title: ChartTitle(text: 'Resultados del proceso electoral'),
+                  legend: Legend(isVisible: true),
+                  series: <PieSeries<_PieData, String>>[
+                    PieSeries<_PieData, String>(
+                        explode: true,
+                        explodeIndex: 0,
+                        dataSource: listPieData,
+                        xValueMapper: (_PieData data, _) => data.xData,
+                        yValueMapper: (_PieData data, _) => data.yData,
+                        dataLabelMapper: (_PieData data, _) => data.text,
+                        dataLabelSettings: DataLabelSettings(isVisible: true)),
+                  ]
+              )
+          )
+        ],
+      ),
     );
   }
 
