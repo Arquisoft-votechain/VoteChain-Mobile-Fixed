@@ -67,6 +67,7 @@ class VoteWarningView extends StatelessWidget {
                           void func() async{
                             final prefs = await SharedPreferences.getInstance();
                             await prefs.setInt('codeVerification', n);
+                            ListVoteService().codeVerification(n);
                           }
                           func();
                           Navigator.push(

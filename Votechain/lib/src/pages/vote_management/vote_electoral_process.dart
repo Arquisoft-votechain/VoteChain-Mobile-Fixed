@@ -122,19 +122,23 @@ class _VoteViewState extends State<SelectElectoralProcess> {
                       final url = await http.get(
                         Uri.parse('https://votechain.online/student/$studentId/electoralProcess/$electoralProcessSchoolId/checkVote'),);
                       var body = json.decode(url.body);
-                      if(body==true){
+                      print(body);
+
+                      var vote=body['exist'];
+                      print(vote);
+                      if(vote==true){
                         Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    VotePoliticalPartiesView()));
+                                    voteVerification()));
                       }
                       else{
                         Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    voteVerification()));
+                                    VotePoliticalPartiesView()));
                       }
                     }
                     func();
