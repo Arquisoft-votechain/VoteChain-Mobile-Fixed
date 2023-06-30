@@ -22,7 +22,6 @@ class _UserProfileViewState extends State<UserProfileView> {
     emails= prefs.getString('email')!;
     var userMap = jsonDecode(userString!) ;
     user = userMap;
-    print(user['resource']['identifier'],);
 
   }
   @override

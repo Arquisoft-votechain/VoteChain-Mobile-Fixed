@@ -2,14 +2,18 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:votechain/src/share_preferences/utils/global-colors.dart';
 import 'package:votechain/src/nav-bar.dart';
+
 import 'package:http/http.dart' as http;
-import 'package:votechain/src/pages/political_party_management/political_parties.dart';
-class ElectoralProcessView extends StatefulWidget {
+import 'package:votechain/src/pages/vote_management/result_win_party/result_electoral_process.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:votechain/src/pages/vote_management/vote_political_parties.dart';
+
+class SelectElectoralProcessResults extends StatefulWidget {
   @override
   _VoteViewState createState() => _VoteViewState();
 }
 
-class _VoteViewState extends State<ElectoralProcessView> {
+class _VoteViewState extends State<SelectElectoralProcessResults> {
   List users = [];
   bool isLoading = false;
   @override
@@ -23,11 +27,13 @@ class _VoteViewState extends State<ElectoralProcessView> {
     setState(() {
       isLoading = true;
     });
-    var url = Uri.parse('https://randomuser.me/api/?results=10');
+
+    final prefs = await SharedPreferences.getInstance();
+    final schoolId = prefs.getInt('studentSchoolId')!;
+    var url = Uri.parse('https://votechain.online/schools/$schoolId/electoral-processes');
     var response = await http.get(url);
-    // print(response.body);
     if (response.statusCode == 200) {
-      var items = json.decode(response.body)['results'];
+      var items = json.decode(response.body);
       setState(() {
         users = items;
         isLoading = false;
@@ -43,7 +49,7 @@ class _VoteViewState extends State<ElectoralProcessView> {
     return Scaffold(
       drawer: NavBar(),
       appBar: AppBar(
-        title: Text("LISTA DE PROCESOS ELECTORALES"),
+        title: Text("PROCESOS ELECTORALES"),
       ),
       body: getBody(),
     );
@@ -53,8 +59,8 @@ class _VoteViewState extends State<ElectoralProcessView> {
     if (users.contains(null) || users.length < 0 || isLoading) {
       return Center(
           child: CircularProgressIndicator(
-        valueColor: new AlwaysStoppedAnimation<Color>(GlobalColors.blueColor),
-      ));
+            valueColor: new AlwaysStoppedAnimation<Color>(GlobalColors.blueColor),
+          ));
     }
     return ListView.builder(
         itemCount: users.length,
@@ -64,13 +70,8 @@ class _VoteViewState extends State<ElectoralProcessView> {
   }
 
   Widget getCard(item) {
-    var fullName = item['name']['title'] +
-        " " +
-        item['name']['first'] +
-        " " +
-        item['name']['last'];
-    var email = item['email'];
-    var profileUrl = item['picture']['large'];
+    var fullName = item['title'];
+    var electoralProcessSchoolId = item['id'];
     //image: NetworkImage(profileUrl)
 
     return Card(
@@ -88,10 +89,6 @@ class _VoteViewState extends State<ElectoralProcessView> {
                     decoration: BoxDecoration(
                       color: GlobalColors.mainColor,
                       borderRadius: BorderRadius.circular(60 / 2),
-                      image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: NetworkImage(profileUrl),
-                      ),
                     ),
                   ),
                   SizedBox(width: 20),
@@ -106,10 +103,6 @@ class _VoteViewState extends State<ElectoralProcessView> {
                         ),
                       ),
                       SizedBox(height: 10),
-                      Text(
-                        email.toString(),
-                        style: TextStyle(color: Colors.grey),
-                      ),
                     ],
                   ),
                 ],
@@ -122,16 +115,23 @@ class _VoteViewState extends State<ElectoralProcessView> {
                 widthFactor: 0.5,
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (BuildContext context) =>
-                                PoliticalPartiesView()));
+                    void func() async{
+                      final prefs = await SharedPreferences.getInstance();
+                      await prefs.setInt('electoralProcessId', electoralProcessSchoolId);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  ResultElectoralProcessView()));
+                    }
+
+                    func();
+
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: GlobalColors.brownwhiteColor,
                   ),
-                  child: Text('VIEW ELECTORAL PROCESS',
+                  child: Text('Resultados',
                       style: TextStyle(color: Colors.white)),
                 ),
               ),

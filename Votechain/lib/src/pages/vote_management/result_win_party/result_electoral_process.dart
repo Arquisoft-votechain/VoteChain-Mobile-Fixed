@@ -5,6 +5,7 @@ import 'package:votechain/src/share_preferences/utils/global-colors.dart';
 import 'package:votechain/src/nav-bar.dart';
 import 'package:http/http.dart' as http;
 import 'result_political_parties.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class _PieData {
   final String xData;
@@ -31,35 +32,13 @@ class _VoteViewState extends State<ResultElectoralProcessView> {
     this.fetchResults();
   }
 
-  fetchUser() async {
-    setState(() {
-      isLoading = true;
-    });
-    var url = Uri.parse('https://randomuser.me/api/?results=10');
-    var response = await http.get(url);
-    // print(response.body);
-    if (response.statusCode == 200) {
-      var items = json.decode(response.body)['results'];
-      setState(() {
-        users = items;
-        isLoading = false;
-      });
-    } else {
-      users = [];
-      isLoading = false;
-    }
-  }
-
   fetchResults() async {
-    //TODO obtener electoral Process id
+    final prefs = await SharedPreferences.getInstance();
+    final electoralProcessId = prefs.getInt('electoralProcessId')!;
+
     var url = Uri.parse(
-        'https://www.votechain.online/electoral-processes/3/political-party-participants/votes');
+        'https://www.votechain.online/electoral-processes/$electoralProcessId/political-party-participants/votes');
     var response = await http.get(url);
-    print("MIRAME COÑOOOO");
-    print("MIRAME COÑOOOO");
-    print(response.body.toString());
-    print("MIRAME COÑOOOO");
-    print("MIRAME COÑOOOO");
 
     if (response.statusCode == 200) {
       var items = json.decode(response.body) as List<dynamic>;
@@ -69,11 +48,6 @@ class _VoteViewState extends State<ResultElectoralProcessView> {
         listPieData.add(_PieData('${value['votes']}', value['votes'], text: '${value['master_political_party']['name']}'));
       });
 
-      print("MIRAME body Response");
-      print("MIRAME body Response");
-      print(listPieData.toString());
-      print("MIRAME body Response");
-      print("MIRAME body Response");
       setState(() { });
     }
   }
@@ -118,8 +92,8 @@ class _VoteViewState extends State<ResultElectoralProcessView> {
     if (users.contains(null) || users.length < 0 || isLoading) {
       return Center(
           child: CircularProgressIndicator(
-        valueColor: new AlwaysStoppedAnimation<Color>(GlobalColors.blueColor),
-      ));
+            valueColor: new AlwaysStoppedAnimation<Color>(GlobalColors.blueColor),
+          ));
     }
     return ListView.builder(
         itemCount: users.length,

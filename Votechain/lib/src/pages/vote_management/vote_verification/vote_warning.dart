@@ -63,15 +63,12 @@ class VoteWarningView extends StatelessWidget {
                     children: [
                       ElevatedButton(
                         onPressed: () {
-                          int n = Random().nextInt(500) + 100000;
-                          print("atento este es el codigooooooooooo $n");
+                          int n = Random().nextInt(800000) + 100000;
                           void func() async{
-
                             final prefs = await SharedPreferences.getInstance();
                             await prefs.setInt('codeVerification', n);
                           }
                           func();
-                          ListVoteService().codeVerification(n);
                           Navigator.push(
                               context,
                               MaterialPageRoute(

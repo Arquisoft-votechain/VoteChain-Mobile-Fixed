@@ -8,9 +8,11 @@ import 'package:votechain/src/pages/vote_management/result_win_party/result_elec
 import 'package:votechain/src/pages/vote_management/vote_political_parties.dart';
 import 'package:votechain/src/services/auth_service.dart';
 import 'package:flutter/material.dart';
-
+import 'package:votechain/src/pages/vote_management/result_win_party/result_political_parties.dart';
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:votechain/src/pages/vote_management/vote_electoral_process.dart';
+import 'package:votechain/src/pages/vote_management/vote_political_parties.dart';
 class NavBar extends StatefulWidget {
   @override
   State<NavBar> createState() => _NavBarState();
@@ -28,7 +30,6 @@ class _NavBarState extends State<NavBar> {
     //var emailMap=jsonDecode(emailString!);
     user = userMap;
     // emails=emailMap;
-    print(user['resource']['identifier']??"",);
   }
 
   @override
@@ -73,23 +74,13 @@ class _NavBarState extends State<NavBar> {
             },
           ),
           ListTile(
-            leading: Icon(Icons.ballot),
-            title: Text('Partidos Politicos Participantes'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => ElectoralProcessView()),
-              );
-            },
-          ),
-          ListTile(
             leading: Icon(Icons.how_to_vote),
             title: Text('Votar'),
             onTap: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => VotePoliticalPartiesView()),
+                    builder: (context) => SelectElectoralProcess()),
               );
             },
           ),
@@ -100,7 +91,7 @@ class _NavBarState extends State<NavBar> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => ResultElectoralProcessView()),
+                    builder: (context) => SelectElectoralProcessResults()),
               );
             },
           ),

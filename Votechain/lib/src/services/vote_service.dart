@@ -11,11 +11,9 @@ class ListVoteService{
         body: jsonEncode({
           "studentId": studentId,
           "politicalPartyId": politicalPartyId,
-//enzo77473@gmail.com
         }),
         encoding: utf8
     );
-    print("este es el estatuscode del api");
     print(response.statusCode);
     return response;
   }
@@ -24,8 +22,12 @@ class ListVoteService{
 
     final prefs = await SharedPreferences.getInstance();
     final emails= prefs.getString('email')!;
+    final userString = prefs.getString('user');
+    var userMap = jsonDecode(userString!) ;
+    var user = userMap;
+    var studentName=user['resource']['name'];
+
     await prefs.setInt('codeVerification', code);
-    print("este odigo estoy enviando al correo");
     print(code);
     final response = await http.post(Uri.parse("https://votechain.online/emails/send"),
         headers: <String, String>{
@@ -36,7 +38,7 @@ class ListVoteService{
           "emailRecipient": emails,
           "subject": "Hola",
           "code":code,
-          "nameRecipient": "Enzo"
+          "nameRecipient": studentName,
         }),
         encoding: utf8
     );

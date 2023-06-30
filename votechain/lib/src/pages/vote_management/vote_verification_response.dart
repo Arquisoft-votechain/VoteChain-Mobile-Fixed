@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../vote_electoral_process.dart';
+import 'vote_electoral_process.dart';
 
-class VoteVerificationNotView extends StatelessWidget {
+class voteVerification extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -37,7 +37,7 @@ class BadCard extends StatelessWidget {
               ),
               SizedBox(height: 10.0),
               Text(
-                "Voto no realizado",
+                "Acceso Restringido",
                 style: TextStyle(
                   fontSize: 40.0,
                   fontWeight: FontWeight.bold,
@@ -47,7 +47,7 @@ class BadCard extends StatelessWidget {
               ),
               SizedBox(height: 16.0),
               Text(
-                "Estimado(a) Elector(a): Queremos informarle que ha  ocurrido un error en el proceso y su voto no fue registrado",
+                "Estimado(a) Elector(a): Queremos informarle que usted ya ha votado en este proceso electoral",
                 style: TextStyle(
                   fontSize: 15.0,
                   color: Colors.black,

@@ -11,7 +11,7 @@ class TypeUserLogin extends StatelessWidget {
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context);
     var height = mediaQuery.size.height;
-    print("student Login");
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: Container(

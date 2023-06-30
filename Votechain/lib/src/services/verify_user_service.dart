@@ -14,10 +14,7 @@ class ListVerifyUser{
         }),
         encoding: utf8
     );
-    print("este es el estatuscode");
-    print(response.statusCode);
 
-    if(response == int)print("La cuenta existe");
     return response;
   }
 }

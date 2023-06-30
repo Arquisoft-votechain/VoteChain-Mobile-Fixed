@@ -23,18 +23,14 @@ class _VoteViewState extends State<VotePoliticalPartiesView> {
   }
 
   fetchUser() async {
-    print("iniciando fectch User");
     setState(() {
       isLoading = true;
     });
-    print("iniciando importnate");
     final prefs = await SharedPreferences.getInstance();
     final electoralProcessId = prefs.getInt('electoralProcessId')!;
-    print("que esta pasando??????????????????");
-    print(electoralProcessId);
     var url = Uri.parse('https://www.votechain.online/electoral-processes/$electoralProcessId/political-party-participants');
     var response = await http.get(url);
-    print("estos son los partidos"+response.body);
+
     if (response.statusCode == 200) {
       var items = json.decode(response.body);
       setState(() {
@@ -76,14 +72,9 @@ class _VoteViewState extends State<VotePoliticalPartiesView> {
     var fullName = item['master_political_party']['name'];
     var description = item['master_political_party']['description'];
     var masterPoliticalPartyId = item['id'];
-    //image: NetworkImage(profileUrl)
-
     void voteListMasterPoliticalParty() async{
       final prefs = await SharedPreferences.getInstance();
-      final studentVoteId =prefs.getInt('studentId')!;
-      print("este es studentVoteID $studentVoteId, este es masterid $masterPoliticalPartyId");
       await prefs.setInt('masterPoliticalPartyVoteId', masterPoliticalPartyId);
-      ///listPublicationsService.postVote(studentVoteId,masterPoliticalPartyId);
     }
     return Card(
       elevation: 1.5,

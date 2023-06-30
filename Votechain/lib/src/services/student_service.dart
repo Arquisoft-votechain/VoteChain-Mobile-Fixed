@@ -10,7 +10,7 @@ class StudentService{
     emails = prefs.getString('email')!;
     var userMap = jsonDecode(userString!) ;
     user = userMap;
-    print(user['resource']['identifier']??"",);
+
   }
 
 }

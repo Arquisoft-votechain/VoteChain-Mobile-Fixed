@@ -4,7 +4,7 @@ import 'package:votechain/src/share_preferences/utils/global-colors.dart';
 import 'package:votechain/src/pages/user_management/user_register/student_register.dart';
 import 'package:votechain/src/pages/user_management/user_views/student_view.dart';
 import 'package:votechain/src/services/auth_service.dart';
-import 'package:votechain/src/services/electoral_process.dart';
+
 import 'package:votechain/src/share_preferences/user_preferences.dart';
 import 'package:votechain/src/route_generator.dart';
 
@@ -80,18 +80,11 @@ class _LoginFormState extends State<LoginForm> {
   final _emailController = TextEditingController();
 
   void loginValidation() async{
-    print("ejecutanto login validation");
 
     bool validate = await AuthService().loggingUser(_emailController.text,_passwordController.text);
-    print(validate);
     if(validate==true){
       await AuthService().GetStudent();
-      print("Fin de ejecucion de validacion");
-      print("ejecutanto GetStudent");
-      print("fin de GetStudent");
-      print("INICIO de  GetElectoralProcessId");
-      ElectoralProcessService.GetElectoralProcessId();
-      print('el usuario exisssssssssssssssssste??????????');
+     // ElectoralProcessService.GetElectoralProcessId();
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => StudentFirstView()),
